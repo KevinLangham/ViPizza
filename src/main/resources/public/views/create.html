@@ -2,7 +2,7 @@
     <div class="form-group">
         <label for="PizzaSize" class="col-sm-2 control-label">Select a size</label>
         <div class="col-sm-10">
-            <select id="base-size" ng-model="order.baseSize"  onchange="setPrice(this)">
+            <select id="base-size" ng-model="order.baseSize">
   				<option value="Small">Small</option>
   				<option value="Medium">Medium</option>
   				<option value="Large">Large</option>
@@ -16,26 +16,41 @@
   				<option value="Hawaiian">Hawaiian</option>
   				<option value="Americano">Americano</option>
   				<option value="Pepperoni">Pepperoni</option>
+  				<option value="Pilchard">Pilchard</option>
+  				<option value="Angel Delight">Angel Delight</option>
 			</select>
         </div>
+        <br/>
+        <br/>
+        <label for="PizzaPrice" class="col-sm-2 control-label">Price</label>
         <div class="col-sm-10">
-        	<label for="Price" class="col-sm-2 control-label">Price</label>
-        	<input id="price" ng-model="order.price"/>
-		</div>        
+        	<input class="col-sm=10" id="price" ng-model="order.price" ng-model-options="{ updateOn: 'change' }"/>
+        </div>
     </div>
+
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Place Order</button>
         </div>
     </div>
-    
+  
     <script>
-    function setPrice(base-size){
-        if (base-size.value ==="Small") {
-            document.getElementById(price).value = "1.99";
-        } else {
-            document.getElementById(price).value = "2000.00";
-        }
-    }
+    $('#price').prop('readonly', true);
+    
+    $( "#base-size" ).change(function($scope) {
+    	   if ($("#base-size").val() === "Small") {
+    		  $("#price").val(5.99);
+    		  $("#price").trigger('change');
+    	  }
+    	  if ($("#base-size").val() === "Medium") {
+    		  $("#price").val(8.99);
+    		  $("#price").trigger('change');
+    	  }
+    	  if ($("#base-size").val() === "Large") {
+    		  $("#price").val(10.99);
+    		  $("#price").trigger('change');
+    	  }
+    	});
 	</script>
 </form>

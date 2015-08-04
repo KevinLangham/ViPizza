@@ -22,12 +22,16 @@ public class PizzaOrder {
  
     public PizzaOrder(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
-        this.baseSize = dbObject.getString("size");
+        this.baseSize = dbObject.getString("baseSize");
         this.topping = dbObject.getString("topping");
         this.price = dbObject.getDouble("price");
         this.createdOn = dbObject.getDate("createdOn");
     }
  
+    public String getId() {
+    	return id;
+    }
+    
     public String getBaseSize() {
 		return baseSize;
 	}

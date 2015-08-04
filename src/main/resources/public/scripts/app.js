@@ -1,5 +1,5 @@
 /**
- * Created by shekhargulati on 10/06/14.
+ * Set up application controllers and paths
  */
 
 var app = angular.module('pizzaapp', [
@@ -30,14 +30,11 @@ app.controller('ListCtrl', function ($scope, $http) {
 });
 
 app.controller('CreateCtrl', function ($scope, $http, $location) {
-    $scope.order = {
-        price: 9.99
-    };
 
     $scope.createPizzaOrder = function () {
         console.log($scope.order);
         $http.post('/api/v1/order', $scope.order).success(function (data) {
-            $location.path('/');
+            $location.path('/list');
         }).error(function (data, status) {
             console.log('Error ' + data)
         })

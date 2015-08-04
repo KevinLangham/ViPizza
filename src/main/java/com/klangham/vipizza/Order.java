@@ -23,16 +23,15 @@ public class Order {
 	        setupEndpoints();
 	    }
 	 
-	    private void setupEndpoints() {
+	    /**
+    	 * Setup webservice endpoints.
+    	 */
+    	private void setupEndpoints() {
 	        post(API_CONTEXT + "/order", "application/json", (request, response) -> {
 	            orderService.createNewPizzaOrder(request.body());
 	            response.status(201);
 	            return response;
 	        }, new JsonTransformer());
-	 
-	        get(API_CONTEXT + "/order/:id", "application/json", (request, response)
-	 
-	                -> orderService.find(request.params(":id")), new JsonTransformer());
 	 
 	        get(API_CONTEXT + "/orders", "application/json", (request, response)
 	 

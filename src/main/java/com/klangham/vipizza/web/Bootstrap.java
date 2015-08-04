@@ -26,6 +26,12 @@ public class Bootstrap {
 	private static final int PORT = System.getenv("OPENSHIFT_DIY_PORT") != null
 			? Integer.parseInt(System.getenv("OPENSHIFT_DIY_PORT")) : 8080;
 
+	/**
+	 * The main method.
+	 *
+	 * Initialise the application.
+	 * 
+	 */
 	public static void main(String[] args) throws Exception {
 		setIpAddress(IP_ADDRESS);
 		setPort(PORT);
@@ -33,6 +39,12 @@ public class Bootstrap {
 		new Order(new OrderService(mongo()));
 	}
 
+	/**
+	 * Set up Mongo database connection.
+	 *
+	 * @return the db
+	 * @throws Exception the exception
+	 */
 	private static DB mongo() throws Exception {
 		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
 		if (host == null) {
